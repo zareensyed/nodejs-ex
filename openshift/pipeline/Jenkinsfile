@@ -3,4 +3,9 @@ node('nodejs') {
   openshiftBuild(buildConfig: 'nodejs-ex', showBuildLogs: 'true')
   stage 'deploy'
   openshiftDeploy(deploymentConfig: 'nodejs-ex')
+  stage 'test' {
+    steps {
+            echo 'Testing....'
+    }
+  }
 }
