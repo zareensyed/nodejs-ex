@@ -3,9 +3,6 @@ node('nodejs') {
   openshiftBuild(buildConfig: 'nodejs-ex', showBuildLogs: 'true')
   stage 'deploy'
   openshiftDeploy(deploymentConfig: 'nodejs-ex')
-  stage 'test' {
-    steps {
-            echo 'Testing....'
-    }
-  }
+  stage 'test' 
+  openshiftVerifyDeployment(depCfg: 'nodejs-ex', replicaCount: '1', verbose: 'true', verifyReplicaCount: 'true', waitTime: '300', waitUnit: 'sec')  
 }
